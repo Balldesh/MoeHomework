@@ -1,0 +1,15 @@
+public class Soda {
+    private String addition;
+
+    public Soda(String addition) {
+        this.addition = addition;
+    }
+
+    public String getMyDrinkString() {
+        if (addition != null && !addition.isEmpty()) {
+            return "Газировка и " + addition;
+        } else {
+            return "Обычная газировка";
+        }
+    }
+}

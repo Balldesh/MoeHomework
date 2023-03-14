@@ -1,0 +1,19 @@
+public class Triangle {
+    private int a, b, c;
+
+    public Triangle(int a, int b, int c) {
+        if (a <= 0 || b <= 0 || c <= 0) {
+            System.out.println("Длины сторон треугольника не могут быть отрицательными или нулевыми");
+        } else if (!checkSides(a, b, c)) {
+            System.out.println("Треугольник с такими длинами сторон не существует");
+        } else {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+    }
+
+    public static boolean checkSides(int a, int b, int c) {
+        return a + b > c && a + c > b && b + c > a;
+    }
+}

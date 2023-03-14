@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Drink extends Food {
     private boolean isCarbonated;
     private boolean isAlcoholic;
@@ -24,7 +28,7 @@ public class Drink extends Food {
         isAlcoholic = alcoholic;
     }
 
-    public void open() {
+    public void open() throws IOException {
         if (isCarbonated) {
             System.out.println("пшш");
         } else {
@@ -33,8 +37,8 @@ public class Drink extends Food {
 
         if (isAlcoholic) {
             System.out.print("Введите ваш возраст: ");
-            Scanner scanner = new Scanner(System.in);
-            int age = scanner.nextInt();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            int age = Integer.parseInt(reader.readLine());
             if (age >= 18) {
                 System.out.println("Кхшшш!");
             }

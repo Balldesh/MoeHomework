@@ -1,0 +1,83 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+enum Kind {
+    DOG,
+    CAT,
+    OTHER
+}
+
+class Pet {
+    private Kind kind;
+    private String name;
+    private String birthDate;
+    private double weight;
+
+    public Pet(Kind kind, String name, String birthDate, double weight) {
+        this.kind = kind;
+        this.name = name;
+        this.birthDate = birthDate;
+        this.weight = weight;
+    }
+
+    public Kind getKind() {
+        return kind;
+    }
+
+    public void setKind(Kind kind) {
+        this.kind = kind;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public static Pet createPetFromString(String petString) {
+        String[] parts = petString.split(",");
+        Kind kind = Kind.valueOf(parts[0].toUpperCase());
+        String name = parts[1];
+        double weight = 0;
+        String birthDate = "";
+
+        if (kind == Kind.CAT || kind == Kind.OTHER) {
+            weight = Double.parseDouble(parts[2]);
+        }
+
+        if (kind == Kind.OTHER) {
+            birthDate = parts[3];
+        }
+
+        return new Pet(kind, name, birthDate, weight);
+    }
+
+    public String toString() {
+        String result = kind + " " + name + " " + weight;
+
+        if (!birthDate.isEmpty()) {
+            result += " " + birthDate;
+        }
+
+        return result;
+    }
+}

@@ -1,0 +1,72 @@
+public class Rook {
+  public enum Color {
+    WHITE, BLACK
+  }
+
+  private static final int BOARD_SIZE = 8;
+
+  private Color color;
+  private int row;
+  private int column;
+
+  public Rook(Color color, int row, int column) {
+    setColor(color);
+    setCoordinates(row, column);
+  }
+
+  public Color getColor() {
+    return color;
+  }
+
+  public void setColor(Color color) {
+    if (color == null) {
+      throw new IllegalArgumentException("Color cannot be null");
+    }
+    this.color = color;
+  }
+
+  public int getRow() {
+    return row;
+  }
+
+  public void setRow(int row) {
+    checkRow(row);
+    this.row = row;
+  }
+
+  public int getColumn() {
+    return column;
+  }
+
+  public void setColumn(int column) {
+    checkColumn(column);
+    this.column = column;
+  }
+
+  public void setCoordinates(int row, int column) {
+    checkRow(row);
+    checkColumn(column);
+    setRow(row);
+    setColumn(column);
+  }
+
+  private void checkRow(int row) {
+    if (row < 1 || row > BOARD_SIZE) {
+      throw new IllegalArgumentException("Row number must be between 1 and " + BOARD_SIZE);
+    }
+  }
+
+  private void checkColumn(int column) {
+    if (column < 1 || column > BOARD_SIZE) {
+      throw new IllegalArgumentException("Column number must be between 1 and " + BOARD_SIZE);
+    }
+  }
+
+  public void move(int newRow, int newColumn) {
+    if (newRow == row || newColumn == column) {
+      setCoordinates(newRow, newColumn);
+    } else {
+      throw new IllegalArgumentException("Illegal move for rook");
+    }
+  }
+}
